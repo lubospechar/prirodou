@@ -7,7 +7,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool)
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=lambda x: x.split(","))
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -17,10 +17,27 @@ INSTALLED_APPS = [
     "django.contrib.gis",
 ]
 
+
+THIRD_PARTY_APPS = [
+    "django_hosts",
+]
+
+
+LOCAL_APPS = [
+    "data",
+    "system",
+    "home",
+    "plants",
+]
+
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "django_hosts.middleware.HostsRequestMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -80,7 +97,7 @@ USE_TZ = config("USE_TZ", cast=bool)
 STATIC_URL = config("STATIC_URL")
 STATIC_ROOT = config("STATIC_ROOT")
 
-MEDIA_URL = config("MEDIA_URL")
-MEDIA_ROOT = config("MEDIA_ROOT")
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ROOT_HOSTCONF = config("ROOT_HOSTCONF")
+DEFAULT_HOST = config("DEFAULT_HOST")
