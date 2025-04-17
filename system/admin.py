@@ -8,5 +8,5 @@ class BiologicalCategoryAdmin(admin.ModelAdmin):
     """
     Admin interface for the BiologicalCategory model.
     """
-    list_display: Tuple[str, ...] = ("category",)
-    search_fields: Tuple[str, ...] = ("category",)
+    list_display: Tuple[str, ...] = ("category_name",)
+    search_fields: Tuple[str, ...] = ("category_name",)

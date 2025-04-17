@@ -1,20 +1,25 @@
-from django.db import models
+from django.db.models import Model, CharField
 
 
-class BiologicalCategory(models.Model):
+class BiologicalCategory(Model):
     """
     Model representing a biological category.
     """
-    category: str = models.CharField(
+
+    # Fields
+    category_name: str = CharField(
         max_length=255,
         unique=True,
-        verbose_name="Kategorie",
-        help_text="Vlož kategorii biologického systému"
+        verbose_name="Category name",
+        help_text="Enter the name of the biological system category"
     )
 
     class Meta:
-        verbose_name: str = "Kategorie biologického systému"
-        verbose_name_plural: str = "Kategorie biologického systému"
+        # Directly define verbose names in Meta
+        verbose_name = "Biological system category"
+        verbose_name_plural = "Biological system categories"
 
     def __str__(self) -> str:
-        return self.category
+        return self.category_name
+
+
