@@ -12,7 +12,9 @@ class BiologicalCategory(Model):
         max_length=255,
         unique=True,
         verbose_name=_("Category name"),
-        help_text=_("Enter the name of the biological system category"),  # Lokalizovaný popis pole
+        help_text=_(
+            "Enter the name of the biological system category"
+        ),  # Lokalizovaný popis pole
     )
 
     class Meta:
