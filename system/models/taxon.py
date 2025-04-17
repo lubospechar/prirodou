@@ -9,7 +9,10 @@ class Taxon(MPTTModel):
     taxon_name = CharField(verbose_name=_("taxon_name"), max_length=255)
 
     category = ForeignKey(
-        BiologicalCategory, verbose_name=_("category"), on_delete=PROTECT, related_name="taxon"
+        BiologicalCategory,
+        verbose_name=_("category"),
+        on_delete=PROTECT,
+        related_name="taxon",
     )
     parent = TreeForeignKey(
         "self",
