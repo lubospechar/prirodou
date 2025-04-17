@@ -20,6 +20,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "django_hosts",
+    "mptt",
 ]
 
 
@@ -36,6 +37,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django_hosts.middleware.HostsRequestMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -101,3 +103,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ROOT_HOSTCONF = config("ROOT_HOSTCONF")
 DEFAULT_HOST = config("DEFAULT_HOST")
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('cs', 'Čeština'),
+]
