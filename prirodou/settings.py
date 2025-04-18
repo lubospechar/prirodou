@@ -20,6 +20,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "django_hosts",
+    "storages",
     "mptt",
 ]
 
@@ -95,6 +96,32 @@ LANGUAGE_CODE = config("LANGUAGE_CODE")
 TIME_ZONE = config("TIME_ZONE")
 USE_I18N = config("USE_I18N", cast=bool)
 USE_TZ = config("USE_TZ", cast=bool)
+
+
+
+STORAGES = {
+    # media soubory přes SFTP
+    "default": {
+        "BACKEND": "storages.backends.sftpstorage.SFTPStorage",
+        "OPTIONS": {
+            "host": config("SFTP_STORAGE_HOST"),
+            "params": {
+                "username": config("SFTP_STORAGE_USER"),
+                "key_filename": config("SFTP_STORAGE_KEYFILE", default=None),
+                "port": config("SFTP_STORAGE_PORT", cast=int, default=22),
+                "look_for_keys": config("SFTP_LOOK_FOR_KEYS", cast=bool, default=True),
+                "allow_agent": config("SFTP_ALLOW_AGENT", cast=bool, default=False),
+            },
+            "root_path": config("SFTP_STORAGE_ROOT"),
+            "base_url": config("SFTP_BASE_URL"),
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+MEDIA_URL=config("SFTP_BASE_URL")
 
 STATIC_URL = config("STATIC_URL")
 STATIC_ROOT = config("STATIC_ROOT")
