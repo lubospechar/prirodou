@@ -1,2 +1,2 @@
-from .article import Article
-from .author import Author
+from data.models.article import Article
+from data.models.author import Author

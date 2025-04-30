@@ -1,16 +1,5 @@
 from django.contrib import admin
-from .models.article import Article
-from .models.author import Author
-
-
-@admin.register(Author)
-class AuthorAdmin(admin.ModelAdmin):
-    """
-    Admin panel configuration for Author model.
-    """
-    list_display = ("author_name",)
-    search_fields = ("author_name",)
-
+from data.models.article import Article
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
