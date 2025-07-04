@@ -5,7 +5,7 @@ from system.models import Taxon
 
 class Photo(models.Model):
     taxon = models.ForeignKey(Taxon, on_delete=models.CASCADE, related_name='photos')
-    image = models.ImageField(upload_to='photos/')
+    image = models.ImageField(upload_to='photos/%Y/%m/%d/')
     thumbnail = ImageSpecField(
         source='image',
         processors=[ResizeToFit(150, 150)],
